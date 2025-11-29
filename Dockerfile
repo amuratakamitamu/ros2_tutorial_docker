@@ -1,3 +1,18 @@
+# Copyright 2025 Keita Sekiguchi
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
 # ベースイメージ: ROS 2 Humble Desktop Full (Ubuntu 22.04ベース)
 FROM osrf/ros:humble-desktop-full
 
@@ -32,13 +47,13 @@ RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
 # 起動スクリプトの作成
 # VNCサーバーとnoVNCを起動し、MATEセッションを開始します
 RUN echo '#!/bin/bash\n\
-export DISPLAY=:1\n\
-rm -rf /tmp/.X11-unix /tmp/.X1-lock\n\
-# VNCサーバー起動 (パスワードなし、セキュリティタイプなし)\n\
-vncserver :1 -geometry 1280x800 -depth 24 -SecurityTypes None -xstartup /usr/bin/mate-session\n\
-# noVNC起動 (ポート8080)\n\
-/usr/share/novnc/utils/launch.sh --vnc localhost:5901 --listen 8080 --sh-command "bash"\n\
-' > /start.sh && chmod +x /start.sh
+    export DISPLAY=:1\n\
+    rm -rf /tmp/.X11-unix /tmp/.X1-lock\n\
+    # VNCサーバー起動 (パスワードなし、セキュリティタイプなし)\n\
+    vncserver :1 -geometry 1280x800 -depth 24 -SecurityTypes None -xstartup /usr/bin/mate-session\n\
+    # noVNC起動 (ポート8080)\n\
+    /usr/share/novnc/utils/launch.sh --vnc localhost:5901 --listen 8080 --sh-command "bash"\n\
+    ' > /start.sh && chmod +x /start.sh
 
 # ポート公開 (Web用: 8080, VNC用: 5901)
 EXPOSE 8080 5901
