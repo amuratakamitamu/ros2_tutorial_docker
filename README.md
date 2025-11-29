@@ -1,6 +1,3 @@
-### README.md
-
-````markdown
 # ROS 2 Humble with Ubuntu MATE & noVNC
 
 Ubuntu 22.04 をベースに、ブラウザからデスクトップ操作が可能な ROS 2 Humble 開発環境です。
@@ -75,5 +72,3 @@ MATEデスクトップが表示され、ターミナルを開くと `ros2` コ�
   * 終了する際は、ターミナルで `Ctrl+C` を押すか、Docker desktop等から停止してください。
 
 <!-- end list -->
-
-```
